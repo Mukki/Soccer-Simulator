@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CDB08EA8-C5B0-462C-9528-9E01D55174E3}</ProjectGuid>
+    <RootNamespace>Demo_8PRO114</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Class\Affichage.cpp" />
+    <ClCompile Include="Class\Arbitre.cpp" />
+    <ClCompile Include="Class\Calendrier.cpp" />
+    <ClCompile Include="Class\Club.cpp" />
+    <ClCompile Include="Class\Contrat.cpp" />
+    <ClCompile Include="Class\Date.cpp" />
+    <ClCompile Include="Class\Entraineur.cpp" />
+    <ClCompile Include="Class\Equipe.cpp" />
+    <ClCompile Include="Class\Joueur.cpp" />
+    <ClCompile Include="Class\JoueurAutonome.cpp" />
+    <ClCompile Include="Class\JoueurNonAutonome.cpp" />
+    <ClCompile Include="Class\LigueSoccer.cpp" />
+    <ClCompile Include="Class\LigueSoccerApp.cpp" />
+    <ClCompile Include="Class\Match.cpp" />
+    <ClCompile Include="Class\Message.cpp" />
+    <ClCompile Include="Class\NegoAcheteur.cpp" />
+    <ClCompile Include="Class\Negociateur.cpp" />
+    <ClCompile Include="Class\Negociation.cpp" />
+    <ClCompile Include="Class\NegoVendeur.cpp" />
+    <ClCompile Include="Class\Palmares.cpp" />
+    <ClCompile Include="Class\Parcours.cpp" />
+    <ClCompile Include="Class\Periode.cpp" />
+    <ClCompile Include="Class\Personne.cpp" />
+    <ClCompile Include="Class\Reglement.cpp" />
+    <ClCompile Include="Class\Rencontre.cpp" />
+    <ClCompile Include="Class\Resultat.cpp" />
+    <ClCompile Include="Class\Rupture.cpp" />
+    <ClCompile Include="Class\Sportif.cpp" />
+    <ClCompile Include="Class\Stade.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Class\Affichage.h" />
+    <ClInclude Include="Class\Arbitre.h" />
+    <ClInclude Include="Class\Calendrier.h" />
+    <ClInclude Include="Class\Club.h" />
+    <ClInclude Include="Class\Contrat.h" />
+    <ClInclude Include="Class\Date.h" />
+    <ClInclude Include="Class\Entraineur.h" />
+    <ClInclude Include="Class\Equipe.h" />
+    <ClInclude Include="Class\Joueur.h" />
+    <ClInclude Include="Class\JoueurAutonome.h" />
+    <ClInclude Include="Class\JoueurNonAutonome.h" />
+    <ClInclude Include="Class\LigueSoccer.h" />
+    <ClInclude Include="Class\Match.h" />
+    <ClInclude Include="Class\Message.h" />
+    <ClInclude Include="Class\NegoAcheteur.h" />
+    <ClInclude Include="Class\Negociateur.h" />
+    <ClInclude Include="Class\Negociation.h" />
+    <ClInclude Include="Class\NegoVendeur.h" />
+    <ClInclude Include="Class\Palmares.h" />
+    <ClInclude Include="Class\Parcours.h" />
+    <ClInclude Include="Class\Periode.h" />
+    <ClInclude Include="Class\Personne.h" />
+    <ClInclude Include="Class\Reglement.h" />
+    <ClInclude Include="Class\Rencontre.h" />
+    <ClInclude Include="Class\Resultat.h" />
+    <ClInclude Include="Class\Rupture.h" />
+    <ClInclude Include="Class\Sportif.h" />
+    <ClInclude Include="Class\Stade.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
