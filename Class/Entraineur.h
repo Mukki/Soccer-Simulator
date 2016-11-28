@@ -7,8 +7,9 @@
 #include "Date.h"
 #include "Club.h"
 #include "Sportif.h"
+#include "Employe.h"
 
-class Entraineur : public Sportif
+class Entraineur : public Sportif, public Employe
 {
 //Variables de l'entraîneur
 private:
@@ -19,6 +20,7 @@ public:
 	//Constructeurs
 	Entraineur(void);
 	Entraineur(string, string, string);
+	Entraineur(string, string, string, float, float);
 	// Ajoute un palmares (Titre, jours, mois, annee, club mérité* )
 	void ajouterPalmares(string, string, string, string, Club*);
 

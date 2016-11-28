@@ -36,9 +36,9 @@ void Negociation::proposerOffre(float montantPrec, queue<Message*>* autreBteMsg,
 	autreBteMsg->push(newMsg);
 	*montantCourant = montantPrec;
 
-
-	/* ENLEVER LE COUT */
-	cout << "Offre : " << montantPrec << "$" << endl << endl;
+	mutex.lock();
+	affichage.afficherOffre(montantPrec);
+	mutex.unlock();
 }
 
 void Negociation::accepterOffre(float montantPrec, queue<Message*>* autreBteMsg)
@@ -46,8 +46,9 @@ void Negociation::accepterOffre(float montantPrec, queue<Message*>* autreBteMsg)
 	newMsg = new Message(1, montantPrec);							//Si le type est 1, il s'agit d'une acceptation
 	autreBteMsg->push(newMsg);
 
-	/* ENLEVER LE COUT */
-	cout << "Acceptation : " << montantPrec << "$" << endl << endl;
+	mutex.lock();
+	affichage.afficherAcceptation(montantPrec);
+	mutex.unlock();
 }
 
 void Negociation::rejeterOffre(float montantPrec, queue<Message*>* autreBteMsg)
@@ -55,6 +56,7 @@ void Negociation::rejeterOffre(float montantPrec, queue<Message*>* autreBteMsg)
 	newMsg = new Message(2, montantPrec);					//Si le type est 2, il s'agit d'un refus
 	autreBteMsg->push(newMsg);
 
-	/* ENLEVER LE COUT */
-	cout << "Refus : " << montantPrec << "$" << endl << endl;
+	mutex.lock();
+	affichage.afficherRefus(montantPrec);
+	mutex.unlock();
 }

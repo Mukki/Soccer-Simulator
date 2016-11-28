@@ -3,11 +3,10 @@
 #define NEGOCIATION_H
 
 #include <queue>
+#include <mutex>
 
 #include "Message.h"
-
-/*A SUPPRIMER*/
-#include <iostream>
+#include "AffichageNegociation.h"
 
 using namespace std;
 
@@ -16,6 +15,8 @@ class Negociateur;
 class Negociation {
 private:
 	Message* newMsg;
+	AffichageNegociation affichage;
+	mutex mutex;
 public:
 	//Constructeur
 	Negociation(void);

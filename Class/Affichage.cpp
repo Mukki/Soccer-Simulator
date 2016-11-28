@@ -538,7 +538,7 @@ void Affichage::rompreContrat()
 			case 2:
 				break;
 			default:
-				cout << "Choix invalide. Veuillez recommancer du debut." << endl;
+				cout << "Choix invalide. Veuillez recommencer du debut." << endl;
 		}
 	}
 	else
@@ -593,7 +593,7 @@ void Affichage::rompreContrat()
 				ligueSoccer->finContrat(ligueSoccer->getContrat(indice)->getJoueurContractant(), ligueSoccer->getClub(indiceNouvelEquipe - 1), ligueSoccer->getClub(indiceVieilleEquipe), annee, Date(jourEntree, moisEntree, anneeEntree), Date(jourContrat, moisContrat, anneeContrat), Reglement(seuil, droits, montantTransfert, montantEncaisse, montantRestant), indiceNouvelEquipe - 1, indiceVieilleEquipe);
 			break;
 		default:
-			cout << "Choix invalide. Veuillez recommancer du debut." << endl;
+			cout << "Choix invalide. Veuillez recommencer du debut." << endl;
 		}
 	}
 
@@ -844,7 +844,6 @@ void Affichage::afficherEncaisses()
 void DebuterNego(Negociateur* nego)
 {
 	nego->negocier();
-	int i = 0;
 }
 
 void Affichage::negocier()
@@ -853,6 +852,13 @@ void Affichage::negocier()
 
 	int nbClub = ligueSoccer->vect_club.size();
 	int clubAcheteur, clubVendeur, joueurEchange;
+	int* flag;
+	float* montantNego;
+	float achMin, achMax, venMin, venMax;
+	int duree;
+
+	flag = new int();
+	montantNego = new float();
 
 	cout << "Negocier le transfert d'un joueur" << endl;
 
@@ -894,15 +900,28 @@ void Affichage::negocier()
 	joueurEchange--;
 
 	system("cls");
+
+	cout << "Veuillez entrer le montant minimal que le vendeur veut obtenir : " << endl;
+	cin >> venMin;
+	cout << "Veuillez-entrer le montant maximum que le vendeur veut obtenir : " << endl;
+	cin >> venMax;
+	cout << "Veuillez-entrer le montant maximal que l'acheteur veut payer : " << endl;
+	cin >> achMax;
+	cout << "Veuillez-entrer le montant minimal que l'acheteur pourra payer : " << endl;
+	cin >> achMin;
+	cout << "Veuillez-entrer la duree des negociations (1 jour = 1 seconde de simulation) : " << endl;
+	cin >> duree;
+
+	system("cls");
 	cout << "Debut des negociations : " << endl;
 
 	queue<Message*>* msgVendeur = new queue<Message*>();
 	queue<Message*>* msgAcheteur = new queue<Message*>();
 
 	NegoAcheteur* acheteur;
-	acheteur = new NegoAcheteur(8000000, 4000000, 1000, ligueSoccer->getClub(clubAcheteur), msgVendeur, msgAcheteur, ligueSoccer->getClub(clubVendeur)->getJoueur(joueurEchange));
+	acheteur = new NegoAcheteur(achMax, achMin, duree, ligueSoccer->getClub(clubAcheteur), msgVendeur, msgAcheteur, flag);
 	NegoVendeur* vendeur;
-	vendeur = new NegoVendeur(10000000, 5000000, 1000, ligueSoccer->getClub(clubVendeur), msgVendeur, msgAcheteur, ligueSoccer->getClub(clubVendeur)->getJoueur(joueurEchange));
+	vendeur = new NegoVendeur(venMax, venMin, duree, ligueSoccer->getClub(clubVendeur), msgVendeur, msgAcheteur, flag, montantNego);
 
 	thread threadAcheteur(DebuterNego, acheteur);
 	thread threadVendeur(DebuterNego, vendeur);
@@ -910,9 +929,81 @@ void Affichage::negocier()
 	threadAcheteur.join();
 	threadVendeur.join();
 
+	int annee, indice, choix;
+	string droits, jourEntree, moisEntree, anneeEntree, jourContrat, moisContrat, anneeContrat, raison;
+	float seuil, montantTransfert, montantEncaisse, montantRestant;
+
+	montantTransfert = *montantNego;
+	montantEncaisse = (*montantNego * 0.8f);
+	montantRestant = (*montantNego * 0.2f);
+
+	indice = ligueSoccer->trouverJoueurContrat(ligueSoccer->getClub(clubVendeur)->getJoueur(joueurEchange)->getPrenom());
+	int indiceVieilleEquipe = ligueSoccer->trouverClubJoueur(ligueSoccer->getContrat(joueurEchange)->getClubContractant()->getNom());
+
+	if (*flag == 0)
+	{
+		cout << "Quel est la duree du nouveau contrat? (annee)" << endl;
+		cin >> annee;
+		cout << endl << "Entrez le jour d'entree en vigueur du contrat (jj) : ";
+		cin >> jourEntree;
+		cout << endl << "Entrez le mois d'entree en vigueur du contrat (mm) : ";
+		cin >> moisEntree;
+		cout << endl << "Entrez l'annee d'entree en vigueur du contrat (aaaa) : ";
+		cin >> anneeEntree;
+		cout << endl << "Entrez le jour de fin du contrat (jj) : ";
+		cin >> jourContrat;
+		cout << endl << "Entrez le mois de fin du contrat (mm) : ";
+		cin >> moisContrat;
+		cout << endl << "Entrez l'annee de fin du contrat (aaaa) : ";
+		cin >> anneeContrat;
+		cout << endl << "Entrez le seuil du nouveau reglement : ";
+		cin >> seuil;
+		cout << endl << "Entrez les nouveaux droits pour le reglement : ";
+		cin >> droits;
+
+		if (indice != 999)
+		{
+			if (ligueSoccer->getContrat(indice)->getJoueurContractant()->briserContrat() == 0)
+			{
+				if (indiceVieilleEquipe != 999)
+					ligueSoccer->finContrat(ligueSoccer->getContrat(indice)->getJoueurContractant(), ligueSoccer->getClub(clubAcheteur), ligueSoccer->getClub(indiceVieilleEquipe), annee, Date(jourEntree, moisEntree, anneeEntree), Date(jourContrat, moisContrat, anneeContrat), Reglement(seuil, droits, montantTransfert, montantEncaisse, montantRestant), clubAcheteur, indiceVieilleEquipe);
+			}
+			else
+			{
+				cout << "Il s'agit d'un joueur autonome. Avec les informations precedentes, celui-ci brise-t-il son contrant ou arrive-t-il a echeance?" << endl;
+				cout << "(1) Romp son contrat" << endl;
+				cout << "(2) Arrive a echeance" << endl;
+				cin >> choix;
+
+				switch (choix)
+				{
+				case 1:
+					cout << endl << "Veuillez entrez la raison du depart : ";
+					cin >> raison;
+
+					if (indiceVieilleEquipe != 999)
+						ligueSoccer->ruptureContrat(ligueSoccer->getContrat(indice)->getJoueurContractant(), ligueSoccer->getClub(clubAcheteur), ligueSoccer->getClub(indiceVieilleEquipe), annee, Date(jourEntree, moisEntree, anneeEntree), Date(jourContrat, moisContrat, anneeContrat), Reglement(seuil, droits, montantTransfert, montantEncaisse, montantRestant), clubAcheteur, indiceVieilleEquipe, raison);
+					break;
+				case 2:
+					if (indiceVieilleEquipe != 999)
+						ligueSoccer->finContrat(ligueSoccer->getContrat(indice)->getJoueurContractant(), ligueSoccer->getClub(clubAcheteur), ligueSoccer->getClub(indiceVieilleEquipe), annee, Date(jourEntree, moisEntree, anneeEntree), Date(jourContrat, moisContrat, anneeContrat), Reglement(seuil, droits, montantTransfert, montantEncaisse, montantRestant), clubAcheteur, indiceVieilleEquipe);
+					break;
+				default:
+					cout << "Choix invalide. Veuillez recommencer du debut." << endl;
+				}
+			}
+		}
+		else
+		{
+			cout << endl << "ERREUR LORS DU TRANSFERT" << endl << endl;
+		}
+	}
+
 	delete acheteur;
 	delete vendeur;
 	delete msgVendeur;
 	delete msgAcheteur;
+	delete flag;
+	delete montantNego;
 	system("pause");
 }

@@ -63,11 +63,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Class\Affichage.cpp" />
+    <ClCompile Include="Class\AffichageNegociation.cpp" />
     <ClCompile Include="Class\Arbitre.cpp" />
     <ClCompile Include="Class\Calendrier.cpp" />
     <ClCompile Include="Class\Club.cpp" />
     <ClCompile Include="Class\Contrat.cpp" />
     <ClCompile Include="Class\Date.cpp" />
+    <ClCompile Include="Class\Employe.cpp" />
     <ClCompile Include="Class\Entraineur.cpp" />
     <ClCompile Include="Class\Equipe.cpp" />
     <ClCompile Include="Class\Joueur.cpp" />
@@ -94,11 +96,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class\Affichage.h" />
+    <ClInclude Include="Class\AffichageNegociation.h" />
     <ClInclude Include="Class\Arbitre.h" />
     <ClInclude Include="Class\Calendrier.h" />
     <ClInclude Include="Class\Club.h" />
     <ClInclude Include="Class\Contrat.h" />
     <ClInclude Include="Class\Date.h" />
+    <ClInclude Include="Class\Employe.h" />
     <ClInclude Include="Class\Entraineur.h" />
     <ClInclude Include="Class\Equipe.h" />
     <ClInclude Include="Class\Joueur.h" />

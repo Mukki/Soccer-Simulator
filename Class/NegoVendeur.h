@@ -5,12 +5,15 @@
 
 #include <mutex>
 #include <queue>
+#include <ctime>
 #include "Negociation.h"
 #include "Negociateur.h"
 #include "NegoAcheteur.h"
 #include "Message.h"
 
 using namespace std;
+
+typedef chrono::high_resolution_clock Clock;
 
 class NegoVendeur : public Negociateur
 {
@@ -19,10 +22,12 @@ private:
 	queue<Message*>* autreBteMsg;
 	float* montantCourant;
 	mutex mutex;
+	int* flag;
+	float* montantNego;
 public:
 	//Constructeurs
 	NegoVendeur(void);
-	NegoVendeur(float, float, int, Club*, queue<Message*>*, queue<Message*>*, Joueur*);
+	NegoVendeur(float, float, int, Club*, queue<Message*>*, queue<Message*>*, int*, float*);
 
 	//Destructeur
 	~NegoVendeur();

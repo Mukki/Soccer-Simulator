@@ -4,6 +4,7 @@
 
 #include <mutex>
 #include <queue>
+#include <ctime>
 #include "Negociation.h"
 #include "Negociateur.h"
 #include "NegoVendeur.h"
@@ -18,10 +19,11 @@ private:
 	queue<Message*>* autreBteMsg;
 	float* montantCourant;
 	mutex mutex;
+	int* flag;
 public:
 	//Constructeurs
 	NegoAcheteur(void);
-	NegoAcheteur(float, float, int, Club*, queue<Message*>*, queue<Message*>*, Joueur*);
+	NegoAcheteur(float, float, int, Club*, queue<Message*>*, queue<Message*>*, int*);
 
 	//Destructeur
 	~NegoAcheteur();

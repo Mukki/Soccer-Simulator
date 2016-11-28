@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <future>
+#include <cstdlib>
 
 #include "LigueSoccer.h"
 #include "Joueur.h"
