@@ -24,15 +24,19 @@ void Affichage::lireFichier()
 
 	try
 	{
-		fstream file;
-
-		file.open(clubFilename, ios::out);
+		ifstream file(clubFilename);
 
 		if (file.is_open())
 		{
+			string nom, histoire, couleur, ville, adresse;
+
+			file >> nom >> histoire >> couleur >> ville >> adresse;
+
 			while (!file.eof())
 			{
-				
+				ligueSoccer->ajouterClub(nom, histoire, couleur, ville, adresse);
+
+				file >> nom >> histoire >> couleur >> ville >> adresse;
 			}
 
 			Reglement unReglement(8000, "Quitter l'equipe", 7000, 2000, 5000);
@@ -158,6 +162,8 @@ void Affichage::lireFichier()
 
 		ligueHardcoder();
 	}
+
+	system("pause");
 }
 
 void Affichage::enregistrerFichier()
@@ -510,8 +516,8 @@ void Affichage::afficherMeilleurClub()
 		unClub = ligueSoccer->leClub(index);
 
 		cout << "Club le plus titre" << endl;
-		cout << "Nom : " << unClub->leNom() << endl;
-		cout << "Avec " << unClub->leNbPalmares() << " palmares " << endl;
+		cout << "Il s'agit du club " << unClub->leNom();
+		cout << " avec " << unClub->leNbPalmares() << " palmares " << endl;
 		cout << endl;
 	}
 	else
@@ -522,10 +528,10 @@ void Affichage::afficherCalendrier()
 {
 	system("cls");
 
-	cout << "Calendrier des rencontres" << endl << endl;
+	cout << "Les rencontres" << endl << endl;
 
 	for (int i = 0; i < calendrierRencontres.leNbRencontre(); i++) {
-		cout << "Rencontre #" << i + 1 << endl;
+		cout << "Rencontre " << i + 1 << endl;
 		cout << "Club local : " << calendrierRencontres.leNomClubLocal(i) << endl;
 		cout << "Club visiteur : " << calendrierRencontres.leNomClubVisiteur(i) << endl;
 		cout << "Date de l'affrontement : " << calendrierRencontres.laDate(i).laDateEnTexte() << endl;
@@ -633,18 +639,17 @@ void Affichage::rompreContrat()
 
 		Date dateContrat;
 
-		cout << "Un joueur contractant correspondant a votre entree a ete retrouve : " << endl;
-		cout << "___________________________________________________________________ " << endl << endl;
+		cout << "Un joueur contractant correspondant a votre entree a ete retrouve : " << endl << endl;
 		contratTrouve = ligueSoccer->leContrat(indice);
 		contratTrouve->leJoueurContractant();
 		dateContrat = contratTrouve->laDateEntree();
 		clubLibere = contratTrouve->leClubLibere();
 		clubContractant = contratTrouve->leClubContractant();
-		cout << "Nom du joueur contractant :              " << contratTrouve->leJoueurContractant()->lePrenom() << " " << contratTrouve->leJoueurContractant()->leNom() << endl;
-		cout << "Date d'entree en vigueur du contrat :    " << dateContrat.laDateEnTexte() << endl;
-		cout << "Duree du contrat (annees)  :             " << contratTrouve->laDureeContrat() << endl;
-		cout << "Club libere :                            " << clubLibere->leNom() << endl;
-		cout << "Club contractant :                       " << clubContractant->leNom() << endl << endl;
+		cout << "Nom du joueur contractant : " << contratTrouve->leJoueurContractant()->lePrenom() << " " << contratTrouve->leJoueurContractant()->leNom() << endl;
+		cout << "Date d'entree en vigueur du contrat : " << dateContrat.laDateEnTexte() << endl;
+		cout << "Duree du contrat (annees) : " << contratTrouve->laDureeContrat() << endl;
+		cout << "Club libere : " << clubLibere->leNom() << endl;
+		cout << "Club contractant : " << clubContractant->leNom() << endl << endl;
 	}
 	else {
 		cout << "Aucun joueur contractant trouve correspondant a votre critere de recherche" << endl << endl;
@@ -914,7 +919,6 @@ void Affichage::afficherRencontresClub()
 			else {
 				cout << "Le match n'a pas encore eu lieu ou n'aura pas lieu..." << endl;
 			}
-			cout << "_____________________________________________________________" << endl << endl;
 		}
 	}
 }
@@ -941,7 +945,7 @@ void Affichage::afficherRencontresDate()
 	for (int i = 0; i < calendrierRencontres.leNbRencontre(); i++) {
 		if (calendrierRencontres.laDate(i).laDateEnTexte() == date) {
 			matchTrouve = 1;
-			cout << "Rencontre #" << i + 1 << endl;
+			cout << "Rencontre " << i + 1 << endl;
 			cout << "Club local : " << calendrierRencontres.leNomClubLocal(i) << endl;
 			cout << "Club visiteur : " << calendrierRencontres.leNomClubVisiteur(i) << endl;
 			cout << "Date de l'affrontement : " << calendrierRencontres.laDate(i).laDateEnTexte() << endl;
@@ -953,7 +957,6 @@ void Affichage::afficherRencontresDate()
 			else {
 				cout << "Le match n'a pas encore eu lieu ou n'aura pas lieu..." << endl;
 			}
-			cout << "_____________________________________________________________" << endl << endl;
 		}
 	}
 	if (matchTrouve == 0)
@@ -967,7 +970,7 @@ void Affichage::afficherEncaisses()
 	string jour, mois, annee;
 	float montantEncaisseTotal = 0;
 	int choix;
-	cout << "Afficher les rencontres pour un club" << endl;
+	cout << "Afficher les revenues de transfert pour un club" << endl;
 
 	for (int i = 0; i < ligueSoccer->leNbClub(); i++)
 	{
@@ -1026,7 +1029,7 @@ void Affichage::negocier()
 		cout << "(" << i + 1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;
 	}
 
-	cout << endl << "Entrez le numero du acheteur : ";
+	cout << endl << "Entrez le numero du club acheteur : ";
 	cin >> clubAcheteur;
 	clubAcheteur--;
 	cout << endl << "Entrez le numero du club vendeur : ";

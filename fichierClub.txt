@@ -1,5 +1,5 @@
-Marais CacherLesMarais Noir Innistrad 890DesMarais
-Forets ExplorerLesForets Vert Lorwyn 34DeLaForet
-Iles NagerJusqu'auIles Bleu Kamigawa 765DesIles
-Montagnes EscaladerDesMontagnes Rouge Dominaria 2424DeLaMontagne
 Plaines TraverserLesPlaines Blanc Alara 123DesPlaines
+Montagnes EscaladerDesMontagnes Rouge Dominaria 2424DeLaMontagne
+Iles NagerJusqu'auIles Bleu Kamigawa 765DesIles
+Forets ExplorerLesForets Vert Lorwyn 34DeLaForet
+Marais CacherLesMarais Noir Innistrad 890DesMarais
