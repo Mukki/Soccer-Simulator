@@ -9,13 +9,15 @@ using namespace std;
 
 class Negociateur
 {
+	friend class Negociation;
+
 private:
 	float montantMax;
 	float montantMin;
 	int duree;
 	Club* representantClub;
 	queue<Message*>* msg;
-	friend class Negociation;
+	
 public:
 	//Constructeurs
 	Negociateur(void);
@@ -33,5 +35,4 @@ public:
 	//Autres fonctions
 	virtual float negocier();
 };
-
 #endif

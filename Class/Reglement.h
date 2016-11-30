@@ -16,15 +16,14 @@ private:
 	float montantRestant;
 
 public:
-	//Constructeurs
-	Reglement(void);
+	Reglement();
 	Reglement(float, string, float, float, float);
+	~Reglement();
 
-	//Accesseurs GET
-	float getSeuil();
-	string getDroits();
-	float getMontantTransfert();
-	float getMontantEncaisse();
-	float getMontantRestant();
+	float leSeuil();
+	string lesDroits();
+	float leMontantTransfert();
+	float leMontantEncaisse();
+	float leMontantRestant();
 };
 #endif

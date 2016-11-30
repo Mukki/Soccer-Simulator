@@ -1,8 +1,8 @@
 #include "NegoVendeur.h"
 
-NegoVendeur::NegoVendeur(void)
+NegoVendeur::NegoVendeur()
 {
-
+	//NOP
 }
 
 NegoVendeur::NegoVendeur(float montantMax, float montantMin, int duree, Club* representantClub, queue<Message*>* msgVendeur, queue<Message*>* msgAcheteur, int* flag, float* montantNego) : Negociateur(montantMax, montantMin, duree, representantClub)
@@ -40,33 +40,33 @@ float NegoVendeur::negocier()
 		{
 			msgTmp = maBteMsg->front();
 			maBteMsg->pop();
-			if (msgTmp->getType() == 0)			//S'il s'agit d'une offre (0)
+			if (msgTmp->leType() == 0)			//S'il s'agit d'une offre (0)
 			{
-				if (msgTmp->getMontant() < NegoVendeur::getMontantMin())		//Si le montant offert par l'acheteur est einférieur au montant minimal désiré du vendeur, faire une contre offre
+				if (msgTmp->leMontant() < NegoVendeur::getMontantMin())		//Si le montant offert par l'acheteur est einférieur au montant minimal désiré du vendeur, faire une contre offre
 				{
-					uneNegociation.proposerOffre(msgTmp->getMontant(), autreBteMsg, 1, montantCourant);
+					uneNegociation.proposerOffre(msgTmp->leMontant(), autreBteMsg, 1, montantCourant);
 				}
-				else if (((msgTmp->getMontant() <= NegoVendeur::getMontantMax()) && (msgTmp->getMontant() >= NegoVendeur::getMontantMin())) || (msgTmp->getMontant() >= NegoVendeur::getMontantMax()))		//Si le montant offert par l'acheteur est entre le montant min et max, accepter
+				else if (((msgTmp->leMontant() <= NegoVendeur::getMontantMax()) && (msgTmp->leMontant() >= NegoVendeur::getMontantMin())) || (msgTmp->leMontant() >= NegoVendeur::getMontantMax()))		//Si le montant offert par l'acheteur est entre le montant min et max, accepter
 				{
-					uneNegociation.accepterOffre(msgTmp->getMontant(), autreBteMsg);
+					uneNegociation.accepterOffre(msgTmp->leMontant(), autreBteMsg);
 					*flag = 0;
 					break;
 				}
 				else		//Sinon refuser
 				{
-					uneNegociation.rejeterOffre(msgTmp->getMontant(), autreBteMsg);
+					uneNegociation.rejeterOffre(msgTmp->leMontant(), autreBteMsg);
 					*flag = 1;
 					break;
 				}
 			}
-			else if (msgTmp->getType() == 1)		//S'il s'agit d'une acceptation (1)
+			else if (msgTmp->leType() == 1)		//S'il s'agit d'une acceptation (1)
 			{
 				//Faire le transfert
 				break;
 			}
 			else if (chrono >= NegoVendeur::getDuree())		//Si la negociation excède la durée du Mercator
 			{
-				uneNegociation.rejeterOffre(msgTmp->getMontant(), autreBteMsg);
+				uneNegociation.rejeterOffre(msgTmp->leMontant(), autreBteMsg);
 				*flag = 1;
 				break;
 			}
@@ -76,5 +76,5 @@ float NegoVendeur::negocier()
 			}
 		}
 	}
-	return msgTmp->getMontant();
+	return msgTmp->leMontant();
 }

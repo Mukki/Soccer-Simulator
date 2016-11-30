@@ -14,12 +14,13 @@ private:
 	float penalite;
 
 public:
-	Rupture(void);
+	Rupture();
 	Rupture(Joueur*, string, Club*, float);
+	~Rupture();
 
-	Joueur* getJoueur() { return unJoueurAutonome; }
-	string getRaisonDepart() { return raisonDepart; }
-	Club* getNouveauClub() { return nouveauClub; }
-	float getPenalite() { return penalite; }
+	Joueur* leJoueur();
+	string laRaisonDepart();
+	Club* leNouveauClub();
+	float laPenalite();
 };
 #endif

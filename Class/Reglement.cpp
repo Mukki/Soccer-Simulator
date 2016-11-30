@@ -1,7 +1,6 @@
 #include "Reglement.h"
 
-//Constructeurs
-Reglement::Reglement(void)
+Reglement::Reglement()
 {
 	//NOP
 }
@@ -15,28 +14,32 @@ Reglement::Reglement(float seuil, string droits, float montantTransfert, float m
 	this->montantRestant = montantRestant;
 }
 
-//Accesseurs GET
-float Reglement::getSeuil()
+Reglement::~Reglement()
+{
+	//NOP
+}
+
+float Reglement::leSeuil()
 {
 	return seuil;
 }
 
-string Reglement::getDroits()
+string Reglement::lesDroits()
 {
 	return droits;
 }
 
-float Reglement::getMontantTransfert()
+float Reglement::leMontantTransfert()
 {
 	return montantTransfert;
 }
 
-float Reglement::getMontantEncaisse() 
+float Reglement::leMontantEncaisse() 
 {
 	return montantEncaisse;
 }
 
-float Reglement::getMontantRestant()
+float Reglement::leMontantRestant()
 {
 	return montantRestant;
 }

@@ -14,14 +14,11 @@ private:
 	int experience;
 
 public:
-	//Constructeurs
-	Arbitre(void);
-	Arbitre(string, string, string, int);
+	Arbitre();
+	Arbitre(string nom, string prenom, string lieuObt, int experience);
+	~Arbitre();
 
-	//Accesseurs GET
-	string getNom();
-	string getPrenom();
-	string getLieuObt();
-	int getExperience();
+	string leLieuObt();
+	int lExperience();
 };
 #endif

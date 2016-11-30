@@ -11,20 +11,19 @@ class Match
 private:
 	Equipe equipeLocale;
 	Equipe equipeVisiteur;
-	Periode premierePer;
-	Periode deuxiemePer;
+	Periode premierePeriode;
+	Periode deuxiemePeriode;
 	Resultat resultatFinal;
 
 public:
-	//Constructeurs
-	Match(void);
-	Match(Equipe, Equipe, Periode, Periode, Resultat);
+	Match();
+	Match(Equipe equipeLocale, Equipe equipeVisiteur, Periode premierePeriode, Periode deuxiemePeriode, Resultat resultatFinal);
+	~Match();
 
-	//Accesseurs GET
-	Equipe getEquipeLocale() { return equipeLocale; }
-	Equipe getEquipeVisiteur() { return equipeVisiteur; }
-	Periode getPremierePer() { return premierePer; }
-	Periode getDeuxiemePer() { return deuxiemePer; }
-	Resultat getResultat() { return resultatFinal; }
+	Equipe lEquipeLocale();
+	Equipe lEquipeVisiteur();
+	Periode laPremierePeriode();
+	Periode laDeuxiemePeriode();
+	Resultat leResultatFinal();
 };
 #endif

@@ -5,7 +5,8 @@
 
 using namespace std;
 
-class Stade {
+class Stade
+{
 private:
 	int nbPlaces;
 	string terrain;

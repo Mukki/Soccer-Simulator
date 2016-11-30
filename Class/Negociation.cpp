@@ -1,8 +1,8 @@
 #include "Negociation.h"
 
-Negociation::Negociation(void)
+Negociation::Negociation()
 {
-
+	//NOP
 }
 
 Negociation::~Negociation()

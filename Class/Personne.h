@@ -15,7 +15,7 @@ private:
 
 public:
 	Personne();
-	Personne(string nomPers, string prenomPers, int agePers, string tachePers);
+	Personne(string nom, string prenom, int age, string tache);
 	~Personne();
 
 	string leNom();

@@ -1,7 +1,6 @@
 #include "Contrat.h"
 
-//Constructeurs
-Contrat::Contrat(void)
+Contrat::Contrat()
 {
 	//NOP
 }
@@ -33,49 +32,37 @@ Contrat::~Contrat()
 	//NOP
 }
 
-//Accesseurs GET
-Joueur* Contrat::getJoueurContractant()
+Joueur* Contrat::leJoueurContractant()
 {
 	return joueurContractant;
 }
 
-Club* Contrat::getClubContractant()
+Club* Contrat::leClubContractant()
 {
 	return clubContractant;
 }
 
-Club* Contrat::getClubLibere()
+Club* Contrat::leClubLibere()
 {
 	return clubLibere;
 }
 
-int Contrat::getDureeContrat()
+int Contrat::laDureeContrat()
 {
 	return dureeContrat;
 }
 
-Date Contrat::getDateEntree()
+Date Contrat::laDateEntree()
 {
 	return dateEntree;
 }
 
-Reglement Contrat::getReglement()
+Reglement Contrat::leReglement()
 {
 	return reglement;
 }
 
-Date Contrat::getDateContrat()
+Date Contrat::laDateContrat()
 {
 	return dateContrat;
-}
-
-void Contrat::setdUnCoup(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Reglement reglement, Date dateContrat)
-{
-	this->clubContractant = clubContractant;
-	this->clubLibere = clubLibere;
-	this->dateContrat = dateContrat;
-	this->joueurContractant = joueurContractant;
-	this->dureeContrat = dureeContrat;
-	this->dateEntree = dateEntree;
-	this->reglement = reglement;
 }

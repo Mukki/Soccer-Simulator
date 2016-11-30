@@ -72,6 +72,7 @@
     <ClCompile Include="Class\Employe.cpp" />
     <ClCompile Include="Class\Entraineur.cpp" />
     <ClCompile Include="Class\Equipe.cpp" />
+    <ClCompile Include="Class\Exception.cpp" />
     <ClCompile Include="Class\Joueur.cpp" />
     <ClCompile Include="Class\JoueurAutonome.cpp" />
     <ClCompile Include="Class\JoueurNonAutonome.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Class\Employe.h" />
     <ClInclude Include="Class\Entraineur.h" />
     <ClInclude Include="Class\Equipe.h" />
+    <ClInclude Include="Class\Exception.h" />
     <ClInclude Include="Class\Joueur.h" />
     <ClInclude Include="Class\JoueurAutonome.h" />
     <ClInclude Include="Class\JoueurNonAutonome.h" />

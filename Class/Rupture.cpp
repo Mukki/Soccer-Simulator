@@ -12,3 +12,28 @@ Rupture::Rupture(Joueur* unJoueurAutonome, string raisonDepart, Club* nouveauClu
 	this->nouveauClub = nouveauClub;
 	this->penalite = penalite;
 }
+
+Rupture::~Rupture()
+{
+	//NOP
+}
+
+Joueur* Rupture::leJoueur()
+{
+	return unJoueurAutonome;
+}
+
+string Rupture::laRaisonDepart()
+{
+	return raisonDepart;
+}
+
+Club* Rupture::leNouveauClub()
+{
+	return nouveauClub;
+}
+
+float Rupture::laPenalite()
+{
+	return penalite;
+}

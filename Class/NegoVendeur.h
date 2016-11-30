@@ -37,6 +37,7 @@ public:
 	float getMontantMin() { return Negociateur::getMontantMin(); }
 	int getDuree() { return Negociateur::getDuree(); }
 	Club* getClub() { return Negociateur::getClub(); }
+	float getMontantCourant() { return *montantCourant; }
 
 	//Negociation
 	float negocier();

@@ -1,17 +1,8 @@
 #include "Rencontre.h"
 
-//Constructeurs
-Rencontre::Rencontre(void) 
+Rencontre::Rencontre() 
 {
 	//NOP
-}
-
-Rencontre::Rencontre(Date dateRencontre, Club* clubLocal, Club* clubVisiteur)
-{
-	this->dateRencontre = dateRencontre;
-	this->clubLocal = clubLocal;
-	this->clubVisiteur = clubVisiteur;
-	this->match = NULL;
 }
 
 Rencontre::Rencontre(Date dateRencontre, Club* clubLocal, Club* clubVisiteur, Match* match)
@@ -22,11 +13,27 @@ Rencontre::Rencontre(Date dateRencontre, Club* clubLocal, Club* clubVisiteur, Ma
 	this->match = match;
 }
 
-Rencontre::~Rencontre() {
-	delete match;
+Rencontre::~Rencontre()
+{
+	//NOP
 }
 
-Match* Rencontre::getMatch()
+Date Rencontre::laDateRencontre()
+{
+	return dateRencontre;
+}
+
+Club* Rencontre::leClubLocal()
+{
+	return clubLocal;
+}
+
+Club* Rencontre::leClubVisiteur()
+{
+	return clubVisiteur;
+}
+
+Match* Rencontre::leMatch()
 {
 	return match;
 }

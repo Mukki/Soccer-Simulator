@@ -6,15 +6,16 @@
 
 using namespace std;
 
-class AffichageNegociation {
+class AffichageNegociation
+{
 private:
 
 public:
-	AffichageNegociation(void);
+	AffichageNegociation();
+	~AffichageNegociation();
 
-	void afficherOffre(float);
-	void afficherAcceptation(float);
-	void afficherRefus(float);
+	void afficherOffre(float montantPrec);
+	void afficherAcceptation(float montantPrec);
+	void afficherRefus(float montantPrec);
 };
-
 #endif

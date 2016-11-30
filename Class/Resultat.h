@@ -9,12 +9,11 @@ private:
 	int nbButsVisiteurs;
 
 public:
-	//Constructeurs
-	Resultat(void);
-	Resultat(int, int);
+	Resultat();
+	Resultat(int nbButsLocaux, int nbButsVisiteurs);
+	~Resultat();
 
-	//Accesseurs GET
-	int getNbButsLocaux() { return nbButsLocaux; }
-	int getNbButsVisiteurs() { return nbButsVisiteurs; }
+	int leNbButsLocaux();
+	int leNbButsVisiteurs();
 };
 #endif

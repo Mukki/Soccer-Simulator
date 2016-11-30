@@ -1,6 +1,6 @@
 #include "LigueSoccer.h"
 
-LigueSoccer::LigueSoccer(void)
+LigueSoccer::LigueSoccer()
 {
 	vect_club = vector<Club*>();
 	vect_contrat = vector<Contrat*>();
@@ -19,28 +19,52 @@ LigueSoccer::~LigueSoccer()
 		delete *i;
 }
 
-//Ajoute un club
+vector<Club*>* LigueSoccer::leVecteurClub()
+{
+	return &vect_club;
+}
+
+Club* LigueSoccer::leClub(int i)
+{
+	return vect_club[i];
+}
+
+Contrat* LigueSoccer::leContrat(int i)
+{
+	return vect_contrat[i];
+}
+
+Entraineur* LigueSoccer::lEntraineur(int i)
+{
+	return vect_entraineur[i];
+}
+
+int LigueSoccer::leNbEntraineur()
+{
+	return vect_entraineur.size();
+}
+
+int LigueSoccer::leNbClub()
+{
+	return vect_club.size();
+}
+
 void LigueSoccer::ajouterClub(string nom,string histoire,string couleur,string ville,string adresse)
 {
-	Club* tempClub;
-	tempClub = new Club(nom, histoire, couleur, ville, adresse);
-	vect_club.insert(vect_club.begin(),tempClub); //Complexité algo moins grande qu'avec .push_back()
+	Club* tempClub = new Club(nom, histoire, couleur, ville, adresse);
+	vect_club.insert(vect_club.begin(), tempClub);
 }
 
-//Ajoute un entraineur
 void LigueSoccer::ajouterEntraineur(string nom,string prenom,string lieuObtention)
 {
-	Entraineur* tempEntraineur;
-	tempEntraineur = new Entraineur(nom, prenom, lieuObtention);
-	vect_entraineur.insert(vect_entraineur.begin(),tempEntraineur);	
+	Entraineur* tempEntraineur = new Entraineur(nom, prenom, lieuObtention);
+	vect_entraineur.insert(vect_entraineur.begin(), tempEntraineur);	
 }
 
-//Supprime un club
 void LigueSoccer::supprimerClub(int i)
 {
 	int nbClub = vect_club.capacity();
 
-	//Validation du numeros
 	if(i >= 0 && i <= nbClub)
 		{
 			vect_club.erase(vect_club.begin() + i);
@@ -49,12 +73,10 @@ void LigueSoccer::supprimerClub(int i)
 
 void LigueSoccer::ajouterContrat(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Reglement reglement, Date dateContrat)
 {
-	Contrat* unContrat;
-	unContrat = new Contrat(joueurContractant, clubContractant, clubLibere, dureeContrat, dateEntree, reglement, dateContrat);
+	Contrat* unContrat = new Contrat(joueurContractant, clubContractant, clubLibere, dureeContrat, dateEntree, reglement, dateContrat);
 	vect_contrat.push_back(unContrat);
 }
 
-//Ajoute un joueur à un club
 void LigueSoccer::ajouterJoueurAClub(string nom,string prenom,float taille,float poids,string villeNaissance,Club* club, Contrat* contrat)
 {
 	club->ajoutJoueur(nom, prenom, taille, poids, villeNaissance);
@@ -65,8 +87,9 @@ int LigueSoccer::trouverJoueurContrat(string prenom)
 {
 	string prenomCmp;
 	
-	for (unsigned int i = 0; i < vect_contrat.size(); i++) {
-		prenomCmp = vect_contrat[i]->getJoueurContractant()->getPrenom();
+	for (int i = 0; i < vect_contrat.size(); i++)
+	{
+		prenomCmp = vect_contrat[i]->leJoueurContractant()->lePrenom();
 		if (prenomCmp == prenom)
 			return i;
 	}
@@ -77,21 +100,23 @@ int LigueSoccer::trouverJoueurClub(string prenom, int clubCourant)
 {
 	string prenomCmp;
 
-	for (unsigned int i = 0; i < vect_club[clubCourant]->getNbJoueur(); i++) {
-		prenomCmp = vect_club[clubCourant]->getJoueur(i)->getPrenom();
+	for (int i = 0; i < vect_club[clubCourant]->leNbJoueur(); i++)
+	{
+		prenomCmp = vect_club[clubCourant]->leJoueur(i)->lePrenom();
 		if (prenomCmp == prenom)
 			return i;
 	}
 	return 999;
 }
 
-int LigueSoccer::trouverClubJoueur(string nom)
+int LigueSoccer::trouverClubJoueur(string prenom)
 {
 	string nomCmp;
 
-	for (unsigned int i = 0; i < vect_club.size(); i++) {
-		nomCmp = vect_club[i]->getNom();
-		if (nomCmp == nom)
+	for (int i = 0; i < vect_club.size(); i++)
+	{
+		nomCmp = vect_club[i]->leNom();
+		if (nomCmp == prenom)
 			return i;
 	}
 	return 999;
@@ -99,36 +124,32 @@ int LigueSoccer::trouverClubJoueur(string nom)
 
 void LigueSoccer::finContrat(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Date dateContrat, Reglement nouveauReglement, int nouveauClub, int clubCourant)
 {
-	Contrat * ancienContrat = new Contrat(*vect_contrat[LigueSoccer::trouverJoueurContrat(joueurContractant->getPrenom())]);
+	Contrat * ancienContrat = new Contrat(*vect_contrat[LigueSoccer::trouverJoueurContrat(joueurContractant->lePrenom())]);
 
 	vect_club[clubCourant]->ajoutContratEchu(ancienContrat);
 
-	vect_contrat[LigueSoccer::trouverJoueurContrat(joueurContractant->getPrenom())]->setdUnCoup(joueurContractant, clubContractant, clubLibere, dureeContrat, dateEntree, nouveauReglement, dateContrat);
-
 	if (joueurContractant->briserContrat() == 0)
-		vect_club[nouveauClub]->ajoutJoueurNonAutonome(joueurContractant->getPrenom(), joueurContractant->getNom(), joueurContractant->getTaille(), joueurContractant->getPoids(), joueurContractant->getVilleNaissance());
+		vect_club[nouveauClub]->ajoutJoueurNonAutonome(joueurContractant->lePrenom(), joueurContractant->leNom(), joueurContractant->laTaille(), joueurContractant->lePoids(), joueurContractant->laVilleNaissance());
 	else
-		vect_club[nouveauClub]->ajoutJoueurAutonome(joueurContractant->getPrenom(), joueurContractant->getNom(), joueurContractant->getTaille(), joueurContractant->getPoids(), joueurContractant->getVilleNaissance());
+		vect_club[nouveauClub]->ajoutJoueurAutonome(joueurContractant->lePrenom(), joueurContractant->leNom(), joueurContractant->laTaille(), joueurContractant->lePoids(), joueurContractant->laVilleNaissance());
 
-	vect_club[clubCourant]->supprimerJoueur(clubLibere->trouverJoueurDansJoueur(joueurContractant->getPrenom()));
+	vect_club[clubCourant]->supprimerJoueur(clubLibere->trouverJoueurDansJoueur(joueurContractant->lePrenom()));
 }
 
 void LigueSoccer::ruptureContrat(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Date dateContrat, Reglement nouveauReglement, int nouveauClub, int clubCourant, string raison)
 {
-	Contrat * ancienContrat = new Contrat(*vect_contrat[LigueSoccer::trouverJoueurContrat(joueurContractant->getPrenom())]);
+	Contrat * ancienContrat = new Contrat(*vect_contrat[LigueSoccer::trouverJoueurContrat(joueurContractant->lePrenom())]);
 
 	vect_club[clubCourant]->ajoutContratEchu(ancienContrat);
-
-	vect_contrat[LigueSoccer::trouverJoueurContrat(joueurContractant->getPrenom())]->setdUnCoup(joueurContractant, clubContractant, clubLibere, dureeContrat, dateEntree, nouveauReglement, dateContrat);
 
 	Rupture * laRupture = new Rupture(joueurContractant, raison, clubContractant, joueurContractant->briserContrat());
 
 	vect_club[clubCourant]->ajoutContratRompu(laRupture);
 
 	if (joueurContractant->briserContrat() == 0)
-		vect_club[nouveauClub]->ajoutJoueurNonAutonome(joueurContractant->getPrenom(), joueurContractant->getNom(), joueurContractant->getTaille(), joueurContractant->getPoids(), joueurContractant->getVilleNaissance());
+		vect_club[nouveauClub]->ajoutJoueurNonAutonome(joueurContractant->lePrenom(), joueurContractant->leNom(), joueurContractant->laTaille(), joueurContractant->lePoids(), joueurContractant->laVilleNaissance());
 	else
-		vect_club[nouveauClub]->ajoutJoueurAutonome(joueurContractant->getPrenom(), joueurContractant->getNom(), joueurContractant->getTaille(), joueurContractant->getPoids(), joueurContractant->getVilleNaissance());
+		vect_club[nouveauClub]->ajoutJoueurAutonome(joueurContractant->lePrenom(), joueurContractant->leNom(), joueurContractant->laTaille(), joueurContractant->lePoids(), joueurContractant->laVilleNaissance());
 
-	vect_club[clubCourant]->supprimerJoueur(clubLibere->trouverJoueurDansJoueur(joueurContractant->getPrenom()));
+	vect_club[clubCourant]->supprimerJoueur(clubLibere->trouverJoueurDansJoueur(joueurContractant->lePrenom()));
 }

@@ -1,6 +1,7 @@
 #pragma once
 #ifndef JOUEUR_H_
 #define JOUEUR_H_
+
 #include <string>
 #include "Parcours.h"
 #include "Sportif.h"
@@ -11,27 +12,23 @@ using namespace std;
 class Joueur : public Sportif
 {
 protected:
-	//Variables Joueur
 	float taille;
 	float poids;
 	string villeNaissance;
 	vector<Parcours> vect_parcours;
 
 public:
-	//Constructeurs
-	Joueur(void);
-	Joueur(string, string, float, float, string);
+	Joueur();
+	Joueur(string nom, string prenom, float taille, float poids, string villeNaissance);
+	~Joueur();
 
-	//Gestion des parcours
-	void ajoutParcours(string, Date);
+	string leNom();
+	string lePrenom();
+	float laTaille();
+	float lePoids();
+	string laVilleNaissance();
 
-	//Accesseurs GET
-	string getNom();
-	string getPrenom();
-	float getTaille();
-	float getPoids();
-	string getVilleNaissance();
-
+	void ajoutParcours(string nomCub, Date datePassage);
 	virtual float briserContrat();
 };
 #endif

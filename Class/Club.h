@@ -12,16 +12,16 @@
 #include "Date.h"
 #include "Stade.h"
 #include "Personne.h"
-//#include "Rupture.h"
 
 using namespace std;
+
 class Palmares;
 class Rupture;
 class Contrat;
+
 class Club
 {
 private:
-	//Variables de club
 	string nom;
 	string histoire;
 	string couleur;
@@ -36,41 +36,29 @@ private:
 	vector<Contrat*> vect_contratEchu;
 
 public:
-	//Constructeurs
-	Club(void);
-	Club(string, string, string, string, string);
-
-	//Destructeur
+	Club();
+	Club(string nom, string histoire, string couleur, string ville, string adresse);
 	~Club();
 	
-	//Gestion des joueurs
-	//Nom,Prénom,Taille,Poid,Ville de naissance
-	void ajoutJoueur(string, string, float, float, string);
-	void ajoutJoueurAutonome(string, string, float, float, string);
-	void ajoutJoueurNonAutonome(string, string, float, float, string);
-	void supprimerJoueur(int);
+	string leNom();
+	string lHistoire();
+	string laCouleur();
+	string laVille();
+	string lAdresse();
+	int leNbJoueur();
+	Joueur* leJoueur(int i);
+	Palmares* lePalmares(int i);
+	int leNbPalmares();
+	Contrat* leContratEchu(int i);
+	int leNbContratEchu();
 
-	//Gestion des palmares
-	//Titre,Jours,Mois,Annee
-	void ajoutPalmares(string, string, string, string);
-
-	//Gestion des contrats
-	void ajoutContratEchu(Contrat*);
-	void ajoutContratRompu(Rupture*);
-
-	//Accesseurs GET
-	string getNom(void){return nom;}
-	string getHist(void){return histoire;}
-	string getCoul(void){return couleur;}
-	string getVille(void){return ville;}
-	string getAdr(void){return adresse;}
-	int getNbJoueur(void) { return vect_joueurs.size(); }
-	Joueur* getJoueur(int i){return vect_joueurs[i];}
-	Palmares* getPalmares(int i){return &vect_palmares.at(i);}
-	int getNbPalmares(void){return vect_palmares.size();}
-	Contrat* getContratEchu(int i){return vect_contratEchu[i];}
-	int getNbContratEchu() {return vect_contratEchu.size();}
-
-	int trouverJoueurDansJoueur(string);
+	void ajoutJoueur(string nom, string prenom, float taille, float poids, string villeNaissance);
+	void ajoutJoueurAutonome(string nom, string prenom, float taille, float poids, string villeNaissance);
+	void ajoutJoueurNonAutonome(string nom, string prenom, float taille, float poids, string villeNaissance);
+	void supprimerJoueur(int i);
+	void ajoutPalmares(string titre, string jours, string mois, string annee);
+	void ajoutContratEchu(Contrat* leContrat);
+	void ajoutContratRompu(Rupture* laRupture);
+	int trouverJoueurDansJoueur(string prenom);
 };
 #endif

@@ -16,14 +16,13 @@ private:
 	Joueur* capitaine;
 
 public:
-	//Constructeurs
-	Equipe(void);
-	Equipe(Club*, int, int, Joueur*);
+	Equipe();
+	Equipe(Club* clubEquipe, int nbJoueurs, int nbGardiens, Joueur* capitaine);
+	~Equipe();
 
-	//Accesseurs GET
-	Club* getClubEquipe();
-	int getNbJoueurs();
-	int getNbGardiens();
-	Joueur* getCapitaine();
+	Club* leClubEquipe();
+	int leNbJoueurs();
+	int leNbGardiens();
+	Joueur* leCapitaine();
 };
 #endif

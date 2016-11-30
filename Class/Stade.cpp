@@ -2,21 +2,20 @@
 
 Stade::Stade()
 {
-	nbPlaces = 0;
-	terrain = "";
-	adresse = "";
-	nomStade = "";
+	//NOP
 }
 
-Stade::Stade(int placesStade, string terrainStade, string addrStade, string nameStade) 
+Stade::Stade(int nbPlaces, string terrain, string adresse, string nomStade) 
 {
-	nbPlaces = placesStade;
-	terrain = terrainStade;
-	adresse = addrStade;
-	nomStade = nameStade;
+	this->nbPlaces = nbPlaces;
+	this->terrain = terrain;
+	this->adresse = adresse;
+	this->nomStade = nomStade;
 }
 
-Stade::~Stade() {
+Stade::~Stade()
+{
+	//NOP
 }
 
 int Stade::leNbPlaces()

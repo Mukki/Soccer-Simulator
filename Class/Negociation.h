@@ -12,22 +12,19 @@ using namespace std;
 
 class Negociateur;
 
-class Negociation {
+class Negociation
+{
 private:
 	Message* newMsg;
 	AffichageNegociation affichage;
 	mutex mutex;
-public:
-	//Constructeur
-	Negociation(void);
 
-	//Destructeur
+public:
+	Negociation();
 	~Negociation();
 
-	//Methodes de communication
 	void proposerOffre(float, queue<Message*>*, int, float*);
 	void accepterOffre(float, queue<Message*>*);
 	void rejeterOffre(float, queue<Message*>*);
 };
-
 #endif

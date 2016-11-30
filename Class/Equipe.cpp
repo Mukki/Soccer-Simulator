@@ -1,7 +1,6 @@
 #include "Equipe.h"
 
-//Constructeurs
-Equipe::Equipe(void)
+Equipe::Equipe()
 {
 	//NOP
 }
@@ -14,23 +13,27 @@ Equipe::Equipe(Club* clubEquipe, int nbJoueurs, int nbGardiens, Joueur* capitain
 	this->capitaine = capitaine;
 }
 
-//Accesseurs GET
-Club* Equipe::getClubEquipe()
+Equipe::~Equipe()
+{
+	//NOP
+}
+
+Club* Equipe::leClubEquipe()
 {
 	return clubEquipe;
 }
 
-int Equipe::getNbJoueurs()
+int Equipe::leNbJoueurs()
 {
 	return nbJoueurs;
 }
 
-int Equipe::getNbGardiens()
+int Equipe::leNbGardiens()
 {
 	return nbGardiens;
 }
 
-Joueur* Equipe::getCapitaine()
+Joueur* Equipe::leCapitaine()
 {
 	return capitaine;
 }

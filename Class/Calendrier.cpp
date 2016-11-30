@@ -1,45 +1,41 @@
 #include "Calendrier.h"
 
-//Constructeur
-Calendrier::Calendrier(void)
+Calendrier::Calendrier()
 {
 	vect_rencontre = vector<Rencontre*>();
 }
 
-//Destructeur
 Calendrier::~Calendrier()
 {
 	for (vector<Rencontre*>::iterator i = vect_rencontre.begin(); i != vect_rencontre.end(); ++i)
 		delete * i;
 }
 
-//Accesseur GET
-Rencontre* Calendrier::getRencontre(int i)
+Rencontre* Calendrier::laRencontre(int i)
 {
 	return vect_rencontre[i];
 }
 
-string Calendrier::getDate(int i)
+Date Calendrier::laDate(int i)
 {
-	return vect_rencontre[i]->getDateRencontre().getDateToString();
+	return vect_rencontre[i]->laDateRencontre();
 }
 
-string Calendrier::getNomClubLocal(int i)
+string Calendrier::leNomClubLocal(int i)
 {
-	return vect_rencontre[i]->getClubLocal()->getNom();
+	return vect_rencontre[i]->leClubLocal()->leNom();
 }
 
-string Calendrier::getNomClubVisit(int i)
+string Calendrier::leNomClubVisiteur(int i)
 {
-	return vect_rencontre[i]->getClubVisiteur()->getNom();
+	return vect_rencontre[i]->leClubVisiteur()->leNom();
 }
 
-int Calendrier::getSizeof()
+int Calendrier::leNbRencontre()
 {
 	return vect_rencontre.size();
 }
 
-//Ajouter une rencontre
 void Calendrier::ajoutRencontre(Rencontre* uneRencontre)
 {	
 	vect_rencontre.push_back(uneRencontre);

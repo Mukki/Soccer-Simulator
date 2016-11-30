@@ -1,5 +1,9 @@
 #include "Parcours.h"
 
+Parcours::Parcours()
+{
+	//NOP
+}
 
 Parcours::Parcours(string nomClub, Date datePassage)
 {
@@ -7,6 +11,17 @@ Parcours::Parcours(string nomClub, Date datePassage)
 	this->datePassage = datePassage;
 }
 
-string Parcours::getClub(){return nomClub;}
+Parcours::~Parcours()
+{
+	//NOP
+}
 
-Date Parcours::getDate(){return datePassage;}
+string Parcours::leClub()
+{
+	return nomClub;
+}
+
+Date Parcours::laDate()
+{
+	return datePassage;
+}

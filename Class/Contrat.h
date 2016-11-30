@@ -8,7 +8,8 @@
 
 using namespace std;
 
-class Contrat {
+class Contrat
+{
 private:
 	Joueur* joueurContractant;
 	Club* clubContractant;
@@ -19,22 +20,17 @@ private:
 	Date dateContrat;
 
 public:
-	//Constructeurs
-	Contrat(void);
-	Contrat(Joueur*, Club*, Club*, int, Date, Reglement, Date);
+	Contrat();
+	Contrat(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Reglement reglement, Date dateContrat);
 	Contrat(const Contrat& recopie);
 	~Contrat();
 
-	//Accesseurs GET
-	Joueur* getJoueurContractant();
-	Club* getClubContractant();
-	Club* getClubLibere();
-	int getDureeContrat();
-	Date getDateEntree();
-	Reglement getReglement();
-	Date getDateContrat();
-
-	//SET
-	void setdUnCoup(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Reglement reglement, Date dateContrat);
+	Joueur* leJoueurContractant();
+	Club* leClubContractant();
+	Club* leClubLibere();
+	int laDureeContrat();
+	Date laDateEntree();
+	Reglement leReglement();
+	Date laDateContrat();
 };
 #endif

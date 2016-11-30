@@ -1,12 +1,10 @@
 #include "Club.h"
 
-//Constructeur par commandes
 Club::Club()
 {
 	//NOP
 }
 
-//Constructeur de base du club
 Club::Club(string nom, string histoire, string couleur, string ville, string adresse)
 {
 	this->nom = nom;
@@ -15,7 +13,7 @@ Club::Club(string nom, string histoire, string couleur, string ville, string adr
 	this->ville = ville;
 	this->adresse = adresse;
 
-	this->dateCreation = Date("0", "0", "0");
+	this->dateCreation = Date();
 	this->stadeClub = Stade();
 
 	vect_joueurs = vector<Joueur*>();
@@ -35,25 +33,76 @@ Club::~Club()
 		delete *i;
 }
 
-//Gestion des joueurs
-void Club::ajoutJoueur(string nom,string prenom,float taille,float poids,string villeNaissance)
+string Club::leNom()
 {
-	Joueur* leJoueur;
-	leJoueur = new Joueur(nom, prenom, taille, poids, villeNaissance);
+	return nom;
+}
+
+string Club::lHistoire()
+{
+	return histoire;
+}
+
+string Club::laCouleur()
+{
+	return couleur;
+}
+
+string Club::laVille()
+{
+	return ville;
+}
+
+string Club::lAdresse()
+{
+	return adresse;
+}
+
+int Club::leNbJoueur()
+{
+	return vect_joueurs.size();
+}
+
+Joueur* Club::leJoueur(int i)
+{
+	return vect_joueurs[i];
+}
+
+Palmares* Club::lePalmares(int i)
+{
+	return &vect_palmares.at(i);
+}
+
+int Club::leNbPalmares()
+{
+	return vect_palmares.size();
+}
+
+Contrat* Club::leContratEchu(int i)
+{
+	return vect_contratEchu[i];
+}
+
+int Club::leNbContratEchu()
+{
+	return vect_contratEchu.size();
+}
+
+void Club::ajoutJoueur(string nom, string prenom, float taille, float poids, string villeNaissance)
+{
+	Joueur* leJoueur = new Joueur(nom, prenom, taille, poids, villeNaissance);
 	vect_joueurs.insert(vect_joueurs.begin(), leJoueur);
 }
 
 void Club::ajoutJoueurAutonome(string nom, string prenom, float taille, float poids, string villeNaissance)
 {
-	JoueurAutonome* leJoueur;
-	leJoueur = new JoueurAutonome(nom, prenom, taille, poids, villeNaissance);
+	JoueurAutonome* leJoueur = new JoueurAutonome(nom, prenom, taille, poids, villeNaissance);
 	vect_joueurs.insert(vect_joueurs.begin(), leJoueur);
 }
 
 void Club::ajoutJoueurNonAutonome(string nom, string prenom, float taille, float poids, string villeNaissance)
 {
-	JoueurNonAutonome* leJoueur;
-	leJoueur = new JoueurNonAutonome(nom, prenom, taille, poids, villeNaissance);
+	JoueurNonAutonome* leJoueur = new JoueurNonAutonome(nom, prenom, taille, poids, villeNaissance);
 	vect_joueurs.insert(vect_joueurs.begin(), leJoueur);
 }
 
@@ -63,11 +112,10 @@ void Club::supprimerJoueur(int indice)
 	vect_joueurs.erase(vect_joueurs.begin() + indice);
 }
 
-//Gestion des palmares
-void Club::ajoutPalmares(string titre,string jours,string mois,string annee)
+void Club::ajoutPalmares(string titre, string jours, string mois, string annee)
 {
-	Date laDate(jours,mois,annee);
-	Palmares lePalmares(titre,laDate,this);
+	Date laDate(jours, mois, annee);
+	Palmares lePalmares(titre, laDate, this);
 	vect_palmares.insert(vect_palmares.begin(), lePalmares);
 }
 
@@ -85,8 +133,9 @@ int Club::trouverJoueurDansJoueur(string prenom)
 {
 	string prenomCmp;
 
-	for (unsigned int i = 0; i < vect_joueurs.size(); i++) {
-		prenomCmp = vect_joueurs[i]->getPrenom();
+	for (int i = 0; i < vect_joueurs.size(); i++)
+	{
+		prenomCmp = vect_joueurs[i]->lePrenom();
 		if (prenomCmp == prenom)
 			return i;
 	}

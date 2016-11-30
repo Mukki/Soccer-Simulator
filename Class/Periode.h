@@ -10,13 +10,12 @@ private:
 	int nbButsVisiteurs;
 
 public:
-	//Constructeurs
-	Periode(void);
-	Periode(int, int, int);
+	Periode();
+	Periode(int duree, int nbButsLocaux, int nbButsVisiteurs);
+	~Periode();
 
-	//Accesseurs GET
-	int getDuree() { return duree; }
-	int getNbButsLocaux() { return nbButsLocaux; }
-	int getNbButsVisiteurs() { return nbButsVisiteurs; }
+	int laDuree();
+	int leNbButsLocaux();
+	int leNbButsVisiteurs();
 };
 #endif

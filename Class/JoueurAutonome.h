@@ -13,16 +13,9 @@ private:
 	float penalite = 1000;
 
 public:
-	//Constructeurs
-	JoueurAutonome(void);
-	JoueurAutonome(string, string, float, float, string);
-
-	//Accesseurs GET
-	string getNom() { return nom; }
-	string getPrenom() { return prenom; }
-	float getTaille();
-	float getPoids();
-	string getVilleNaissance();
+	JoueurAutonome();
+	JoueurAutonome(string nom, string prenom, float taille, float poids, string villeNaissance);
+	~JoueurAutonome();
 
 	float briserContrat();
 };

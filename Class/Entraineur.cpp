@@ -1,29 +1,38 @@
 #include "Entraineur.h"
 
-//Constructeur
-Entraineur::Entraineur(void)
+Entraineur::Entraineur()
 {
 	//NOP
 }
 
-//Constructeur
-Entraineur::Entraineur(string e_nom, string e_prenom, string lieu) : Sportif(e_nom, e_prenom)
+Entraineur::Entraineur(string nom, string prenom, string lieu, float salaireHoraire, float salaireAnnuel) : Sportif(nom, prenom), Employe(salaireHoraire, salaireAnnuel)
 {
 	this->lieuObtention = lieu;
 }
 
-//Constructeur
-Entraineur::Entraineur(string e_nom, string e_prenom, string lieu, float e_salaireHoraire, float e_salaireAnnuel) : Sportif(e_nom, e_prenom), Employe(e_salaireHoraire, e_salaireAnnuel)
+Entraineur::~Entraineur()
 {
-	this->lieuObtention = lieu;
+	//NOP
 }
 
-//Ajoute un palmares a l'entraineur
+string Entraineur::lelieuObtention()
+{
+	return lieuObtention;
+}
+
+int Entraineur::leNbPalmares()
+{
+	return vect_titre.size();
+}
+
+Palmares* Entraineur::lePalmares(int i)
+{
+	return &vect_titre.at(i);
+}
+
 void Entraineur::ajouterPalmares(string titre, string jours, string mois, string annee, Club* club)
 {
 	Date laDate(jours, mois, annee);
 	Palmares lePalmares(titre, laDate, club);
 	vect_titre.insert(vect_titre.begin(), lePalmares);
-
 }
-

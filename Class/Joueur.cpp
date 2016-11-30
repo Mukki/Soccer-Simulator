@@ -6,25 +6,47 @@ Joueur::Joueur()
 	//NOP
 }
 
-//Constructeur Joueur
-Joueur::Joueur(string j_nom, string j_prenom, float taille, float poids, string villeNaissance) : Sportif(j_prenom, j_nom)
+Joueur::Joueur(string nom, string prenom, float taille, float poids, string villeNaissance) : Sportif(nom, prenom)
 {
 	this->taille = taille;
 	this->poids = poids;
 	this->villeNaissance = villeNaissance;
 }
 
+Joueur::~Joueur()
+{
+	//NOP
+}
+
+string Joueur::leNom()
+{
+	return nom;
+}
+
+string Joueur::lePrenom()
+{
+	return prenom;
+}
+
+float Joueur::laTaille()
+{
+	return taille;
+}
+
+float Joueur::lePoids()
+{
+	return poids;
+}
+
+string Joueur::laVilleNaissance()
+{
+	return villeNaissance;
+}
+
 void Joueur::ajoutParcours(string nomClub, Date datePassage)
 {
 	vect_parcours.push_back(Parcours(nomClub, datePassage));
 }
-
-//Accesseur GET
-string Joueur::getNom() { return nom; }
-string Joueur::getPrenom() { return prenom; }
-float Joueur::getTaille() { return taille; }
-float Joueur::getPoids() { return poids; }
-string Joueur::getVilleNaissance() { return villeNaissance; }
 
 float Joueur::briserContrat()
 {

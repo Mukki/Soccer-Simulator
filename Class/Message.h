@@ -2,18 +2,18 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 
-class Message {
+class Message
+{
 private:
 	int type;
 	float montant;
+
 public:
-	//Constructeurs
-	Message(void);
-	Message(int, float);
+	Message();
+	Message(int type, float montant);
+	~Message();
 
-	//Accesseur
-	int getType() { return type; }
-	float getMontant() { return montant; }
+	int leType();
+	float leMontant();
 };
-
 #endif

@@ -2,18 +2,15 @@
 
 Personne::Personne()
 {
-	nom = "";
-	prenom = "";
-	age = 0;
-	tache = "";
+	//NOP
 }
 
-Personne::Personne(string nomPers, string prenomPers, int agePers, string tachePers)
+Personne::Personne(string nom, string prenom, int age, string tache)
 {
-	nom = nomPers;
-	prenom = prenomPers;
-	age = agePers;
-	tache = tachePers;
+	this->nom = nom;
+	this->prenom = prenom;
+	this->age = age;
+	this->tache = tache;
 }
 
 Personne::~Personne()

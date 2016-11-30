@@ -13,7 +13,11 @@ protected:
 	string prenom;
 
 public:
-	Sportif(void);
+	Sportif();
 	Sportif(string nom, string prenom);
+	~Sportif();
+
+	string leNom();
+	string lePrenom();
 };
 #endif

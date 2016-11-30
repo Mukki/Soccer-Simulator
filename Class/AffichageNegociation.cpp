@@ -1,8 +1,13 @@
 #include "AffichageNegociation.h"
 
-AffichageNegociation::AffichageNegociation(void)
+AffichageNegociation::AffichageNegociation()
 {
+	//NOP
+}
 
+AffichageNegociation::~AffichageNegociation()
+{
+	//NOP
 }
 
 void AffichageNegociation::afficherOffre(float montantPrec)

@@ -12,21 +12,17 @@ class Calendrier
 {
 private:
 	vector<Rencontre*> vect_rencontre;
-public:
-	//Constructeur
-	Calendrier(void);
 
-	//Destructeur
+public:
+	Calendrier();
 	~Calendrier();
 
-	//Accesseur GET
-	Rencontre* getRencontre(int);
-	string getDate(int);
-	string getNomClubLocal(int);
-	string getNomClubVisit(int);
-	int getSizeof();
+	Rencontre* laRencontre(int i);
+	Date laDate(int i);
+	string leNomClubLocal(int i);
+	string leNomClubVisiteur(int i);
+	int leNbRencontre();
 
-	//Ajouter une rencontre
-	void ajoutRencontre(Rencontre*);
+	void ajoutRencontre(Rencontre* uneRencontre);
 };
 #endif

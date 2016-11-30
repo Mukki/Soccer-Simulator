@@ -14,16 +14,13 @@ private:
 	Match* match;
 
 public:
-	//Constructeurs
-	Rencontre(void);
-	Rencontre(Date, Club*, Club*);
-	Rencontre(Date, Club*, Club*, Match*);
+	Rencontre();
+	Rencontre(Date, Club*, Club*, Match* = NULL);
 	~Rencontre();
 
-	//Accesseurs GET
-	Date getDateRencontre() { return dateRencontre; }
-	Club* getClubLocal() { return clubLocal; }
-	Club* getClubVisiteur() { return clubVisiteur; }
-	Match* getMatch();
+	Date laDateRencontre();
+	Club* leClubLocal();
+	Club* leClubVisiteur();
+	Match* leMatch();
 };
 #endif

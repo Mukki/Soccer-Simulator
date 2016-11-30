@@ -9,14 +9,13 @@ class Employe
 private :
 	float salaireHoraire;
 	float salaireAnnuel;
+
 public:
-	//Constructeurs
-	Employe(void);
-	Employe(float, float);
+	Employe();
+	Employe(float salaireHoraire, float salaireAnnuel);
+	~Employe();
 
-	//Accesseurs GET
-	float getSalaireHoraire() { return salaireHoraire; }
-	float getSalaireAnnuel() { return salaireAnnuel; }
+	float leSalaireHoraire();
+	float leSalaireAnnuel();
 };
-
 #endif

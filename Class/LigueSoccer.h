@@ -21,38 +21,29 @@ class Club;
 class LigueSoccer
 {
 public:
-	//Variables
 	vector<Club*> vect_club;
 	vector<Contrat*> vect_contrat;
 	vector<Entraineur*> vect_entraineur;
 
-	//Constructeur
-	LigueSoccer(void);
-	//Destructeur
+	LigueSoccer();
 	~LigueSoccer();
-	//Ajoute un club (Nom, Histoire, Couleur, Ville, Adresse )
-	void ajouterClub(string, string, string, string, string);
-	//Ajoute un joueur a un club
-	void ajouterJoueurAClub(string, string, float, float, string, Club*, Contrat* contrat);
-	//Ajoute un entraineur a un club
-	void ajouterEntraineur(string, string, string);
-	//Supprime un club
-	void supprimerClub(int);
 
+	vector<Club*>* leVecteurClub();
+	Club* leClub(int i);
+	Contrat* leContrat(int i);
+	Entraineur* lEntraineur(int i);
+	int leNbEntraineur();
+	int leNbClub();
 
-	//Accesseur GET
-	vector<Club*>* getVectClub() {return &vect_club;}
-	Club* getClub(int i) {return vect_club[i];}
-	Contrat* getContrat(int i) {return vect_contrat[i];}
-	Entraineur* getEntraineur(int i){return vect_entraineur[i];}
-	int getNbEntraineur(void){return vect_entraineur.size();}
-	int getNbClub(void){return vect_club.size();}
-
-	void ajouterContrat(Joueur*, Club*, Club*, int, Date, Reglement, Date);
-	int trouverJoueurContrat(string);
-	int trouverJoueurClub(string, int);
+	void ajouterClub(string nom, string histoire, string couleur, string ville, string adresse);
+	void ajouterJoueurAClub(string nom, string prenom, float taille, float poids, string villeNaissance, Club* club, Contrat* contrat);
+	void ajouterEntraineur(string nom, string prenom, string lieuObtention);
+	void supprimerClub(int i);
+	void ajouterContrat(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Reglement reglement, Date dateContrat);
+	int trouverJoueurContrat(string prenom);
+	int trouverJoueurClub(string prenom, int clubCourant);
 	int trouverClubJoueur(string nom);
-	void finContrat(Joueur*, Club*, Club*, int, Date, Date, Reglement, int, int);
-	void ruptureContrat(Joueur*, Club*, Club*, int, Date, Date, Reglement, int, int, string);
+	void finContrat(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Date dateContrat, Reglement nouveauReglement, int nouveauClub, int clubCourant);
+	void ruptureContrat(Joueur* joueurContractant, Club* clubContractant, Club* clubLibere, int dureeContrat, Date dateEntree, Date dateContrat, Reglement nouveauReglement, int nouveauClub, int clubCourant, string raison);
 };
 #endif
