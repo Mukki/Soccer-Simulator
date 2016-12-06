@@ -451,7 +451,7 @@ void Affichage::afficherEntraineurs()
 	for (int i = 0; i < nbEntraineurs; i++)
 	{
 		Entraineur* pEntraineur = ligueSoccer->lEntraineur(i);
-		cout << i+1 << ". " << pEntraineur->leNom() << " " << pEntraineur->lePrenom() << endl;
+		cout << i+1 << ". " << pEntraineur->lePrenom() << " " << pEntraineur->leNom() << endl;
 		cout << "Lieu obtention du grade : " << pEntraineur->lelieuObtention() << endl;
 		
 		int nbPalmares = pEntraineur->leNbPalmares();
