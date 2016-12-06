@@ -39,6 +39,13 @@ void Affichage::lireFichier()
 				file >> nom >> histoire >> couleur >> ville >> adresse;
 			}
 
+			ligueSoccer->leClub(0)->ajoutPalmares("Club de l'annee 2002", "10", "10", "2002");
+			ligueSoccer->leClub(0)->ajoutPalmares("Club de l'annee 2004", "10", "10", "2004");
+			ligueSoccer->leClub(0)->ajoutPalmares("Club de l'annee 2008", "10", "10", "2008");
+			ligueSoccer->leClub(1)->ajoutPalmares("Club de l'annee 2010", "10", "10", "2010");
+			ligueSoccer->leClub(1)->ajoutPalmares("Club de l'annee 2013", "10", "10", "2013");
+			ligueSoccer->leClub(2)->ajoutPalmares("Club de l'annee 2014", "10", "10", "2014");
+
 			Reglement unReglement(8000, "Quitter l'equipe", 7000, 2000, 5000);
 			Date dateEntree1("20", "10", "2016");
 			Date dateEntree2("10", "09", "2008");
@@ -244,7 +251,7 @@ void Affichage::afficherClub()
 	system("cls");
 	int nbClub = ligueSoccer->vect_club.size();
 
-	cout << "Affichage des Clubs" << endl;
+	cout << "Les clubs: " << endl;
 
 	for (int i = 0; i < nbClub; i++)
 	{
@@ -267,7 +274,7 @@ void Affichage::supprimerClub()
 
 	for (int i = 0; i < nbClub; i++)
 	{
-		cout << "(" << i+1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;	
+		cout << i+1 << ". " << ligueSoccer->vect_club[i]->leNom() << endl;	
 	}
 
 	cout << "Entrez le numero du club a supprimer : ";
@@ -287,6 +294,13 @@ void Affichage::ligueHardcoder()
 	ligueSoccer->ajouterClub("Iles", "NagerJusqu'auIles", "Bleu", "Kamigawa", "765DesIles");
 	ligueSoccer->ajouterClub("Forets", "ExplorerLesForets", "Vert", "Lorwyn", "34DeLaForet");
 	ligueSoccer->ajouterClub("Marais", "CacherLesMarais", "Noir", "Innistrad", "890DesMarais");
+
+	ligueSoccer->leClub(0)->ajoutPalmares("Club de l'annee 2002", "10", "10", "2002");
+	ligueSoccer->leClub(0)->ajoutPalmares("Club de l'annee 2004", "10", "10", "2004");
+	ligueSoccer->leClub(0)->ajoutPalmares("Club de l'annee 2008", "10", "10", "2008");
+	ligueSoccer->leClub(1)->ajoutPalmares("Club de l'annee 2010", "10", "10", "2010");
+	ligueSoccer->leClub(1)->ajoutPalmares("Club de l'annee 2013", "10", "10", "2013");
+	ligueSoccer->leClub(2)->ajoutPalmares("Club de l'annee 2014", "10", "10", "2014");
 
 	Reglement unReglement(8000, "Quitter l'equipe", 7000, 2000, 5000);
 	Date dateEntree1("20", "10", "2016");
@@ -394,10 +408,11 @@ void Affichage::afficherJoueur()
 
 	for (int i = 0;i < nbClub; i++)
 	{
-		cout << "(" << i+1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;	
+		cout << i+1 << ". " << ligueSoccer->vect_club[i]->leNom() << endl;	
 	}
 
-	cout << "Entrez le numeros du club a afficher les joueurs : "; cin >> choix;
+	cout << "Entrez le numeros du club a afficher les joueurs : ";
+	cin >> choix;
 	choix--;
 
 	system("cls");
@@ -418,7 +433,7 @@ void Affichage::afficherJoueur()
 		dateTmp = pContrat->laDateEntree();
 		date = dateTmp.laDateEnTexte();
 
-		cout << "(" << i+1 << ") " << pJoueur->lePrenom() << " " << pJoueur->leNom() << endl;
+		cout << i+1 << ". " << pJoueur->lePrenom() << " " << pJoueur->leNom() << endl;
 	}
 
 	cout << endl;
@@ -436,7 +451,7 @@ void Affichage::afficherEntraineurs()
 	for (int i = 0; i < nbEntraineurs; i++)
 	{
 		Entraineur* pEntraineur = ligueSoccer->lEntraineur(i);
-		cout << "(" << i+1 << ") " << pEntraineur->leNom() << " " << pEntraineur->lePrenom() << endl;
+		cout << i+1 << ". " << pEntraineur->leNom() << " " << pEntraineur->lePrenom() << endl;
 		cout << "Lieu obtention du grade : " << pEntraineur->lelieuObtention() << endl;
 		
 		int nbPalmares = pEntraineur->leNbPalmares();
@@ -449,11 +464,10 @@ void Affichage::afficherEntraineurs()
 			cout << "Titre : " << pPalmares->leTitre() << endl;
 			cout << "Date  : " << pPalmares->laDate().laDateEnTexte() << endl;
 			cout << "Club  : " << pPalmares->leClub()->leNom() << endl;
-			cout << endl;
 		}
-	}
 
-	cout << endl;
+		cout << endl;
+	}
 }
 
 void Affichage::afficherMeilleurEntraineur()
@@ -530,18 +544,21 @@ void Affichage::afficherCalendrier()
 
 	cout << "Les rencontres" << endl << endl;
 
-	for (int i = 0; i < calendrierRencontres.leNbRencontre(); i++) {
+	for (int i = 0; i < calendrierRencontres.leNbRencontre(); i++)
+	{
 		cout << "Rencontre " << i + 1 << endl;
 		cout << "Club local : " << calendrierRencontres.leNomClubLocal(i) << endl;
 		cout << "Club visiteur : " << calendrierRencontres.leNomClubVisiteur(i) << endl;
 		cout << "Date de l'affrontement : " << calendrierRencontres.laDate(i).laDateEnTexte() << endl;
 
-		if (calendrierRencontres.laRencontre(i)->leMatch() != NULL) {
+		if (calendrierRencontres.laRencontre(i)->leMatch() != NULL)
+		{
 			cout << "Resultat equipe locale : " << calendrierRencontres.laRencontre(i)->leMatch()->leResultatFinal().leNbButsLocaux() << endl;
 			cout << "Resultat equipe visiteur : " << calendrierRencontres.laRencontre(i)->leMatch()->leResultatFinal().leNbButsVisiteurs() << endl;
 		}
-		else {
-			cout << "Le match n'a pas encore eu lieu ou n'aura pas lieu..." << endl;
+		else
+		{
+			cout << "Le match n'a pas encore eu lieu" << endl;
 		}
 		cout << endl;
 	}
@@ -557,7 +574,7 @@ void Affichage::ajouterJoueur()
 
 	for (int i = 0; i<nbClub; i++)
 	{
-		cout << "(" << i + 1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;
+		cout << i + 1 << ". : " << ligueSoccer->vect_club[i]->leNom() << endl;
 	}
 
 	cout << "Entrez le numeros du club a ajouter un joueur : "; 
@@ -669,8 +686,8 @@ void Affichage::rompreContrat()
 	if (ligueSoccer->leContrat(indice)->leJoueurContractant()->briserContrat() == 0)
 	{
 		cout << "Il s'agit d'un joueur non autonome. Avec les infos precedentes, peut-il toujours mettre fin a son contrat?" << endl;
-		cout << "(1) Oui" << endl;
-		cout << "(2) Non" << endl;
+		cout << "1. Oui" << endl;
+		cout << "2. Non" << endl;
 		cin >> choix;
 
 		switch (choix)
@@ -678,7 +695,7 @@ void Affichage::rompreContrat()
 			case 1:
 				for (int i = 0; i<ligueSoccer->leNbClub(); i++)
 				{
-					cout << "(" << i + 1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;
+					cout << i + 1 << ". " << ligueSoccer->vect_club[i]->leNom() << endl;
 				}
 				cout << "Dans quel numero qu'equipe voulez-vous inserer le joueur?" << endl;
 				cin >> indiceNouvelEquipe;
@@ -719,13 +736,13 @@ void Affichage::rompreContrat()
 	else
 	{
 		cout << "Il s'agit d'un joueur autonome. Avec les informations precedentes, celui-ci brise-t-il son contrant ou arrive-t-il a echeance?" << endl;
-		cout << "(1) Romp son contrat" << endl;
-		cout << "(2) Arrive a echeance" << endl;
+		cout << "1. Romp son contrat" << endl;
+		cout << "2. Arrive a echeance" << endl;
 		cin >> choix;
 
 		for (int i = 0; i<ligueSoccer->leNbClub(); i++)
 		{
-			cout << "(" << i + 1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;
+			cout << i + 1 << ". " << ligueSoccer->vect_club[i]->leNom() << endl;
 		}
 		cout << "Dans quel numero qu'equipe voulez-vous inserer le joueur?" << endl;
 		cin >> indiceNouvelEquipe;
@@ -782,7 +799,7 @@ void Affichage::ajouterMatch() {
 
 	for (int i = 0; i<nbClub; i++)
 	{
-		cout << "(" << i + 1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;
+		cout << i + 1 << ". " << ligueSoccer->vect_club[i]->leNom() << endl;
 	}
 
 	cout << endl << "Entrez le numero du club local : ";
@@ -895,7 +912,7 @@ void Affichage::afficherRencontresClub()
 
 	for (int i = 0; i<nbClub; i++)
 	{
-		cout << "(" << i + 1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;
+		cout << i + 1 << ". " << ligueSoccer->vect_club[i]->leNom() << endl;
 	}
 
 	cout << endl << "Entrez le numero du club local : ";
@@ -974,7 +991,7 @@ void Affichage::afficherEncaisses()
 
 	for (int i = 0; i < ligueSoccer->leNbClub(); i++)
 	{
-		cout << "(" << i + 1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;
+		cout << i + 1 << ". " << ligueSoccer->vect_club[i]->leNom() << endl;
 	}
 
 	cout << endl << "Entrez le numero du club pour lequel vous desirez trouver le montant encaisse : ";
@@ -1026,7 +1043,7 @@ void Affichage::negocier()
 
 	for (int i = 0; i < nbClub; i++)
 	{
-		cout << "(" << i + 1 << ") Club : " << ligueSoccer->vect_club[i]->leNom() << endl;
+		cout << i + 1 << ". " << ligueSoccer->vect_club[i]->leNom() << endl;
 	}
 
 	cout << endl << "Entrez le numero du club acheteur : ";
@@ -1054,7 +1071,7 @@ void Affichage::negocier()
 		dateTmp = pContrat->laDateEntree();
 		date = dateTmp.laDateEnTexte();
 
-		cout << "(" << i + 1 << ") " << pJoueur->leNom() << " " << pJoueur->lePrenom() << endl;
+		cout << i + 1 << ". " << pJoueur->leNom() << " " << pJoueur->lePrenom() << endl;
 	}
 
 	cout << endl << "Entrez le numero du joueur que vous-voulez echanger : ";
@@ -1133,8 +1150,8 @@ void Affichage::negocier()
 			else
 			{
 				cout << "Il s'agit d'un joueur autonome. Avec les informations precedentes, celui-ci brise-t-il son contrat ou arrive-t-il a echeance?" << endl;
-				cout << "(1) Romp son contrat" << endl;
-				cout << "(2) Arrive a echeance" << endl;
+				cout << "1. Romp son contrat" << endl;
+				cout << "2. Arrive a echeance" << endl;
 				cin >> choix;
 
 				switch (choix)
